@@ -1,5 +1,5 @@
 -#  This file is app/views/movies/search_directors.html.haml
-%h1 Movies with directors same as @movie
+%h1 Movies with directors same as #{@movie.title}
 
 %table#movies
   %thead
@@ -7,14 +7,14 @@
       %th Movie Title
       %th Rating
       %th Release Date
+      %th Director
       %th More Info
   %tbody
-    - @movies.each do |movie|
+    - @same_movies.each do |some_movie|
       %tr
-        %td= movie.title 
-        %td= movie.rating
-        %td= movie.release_date
-        %td= movie.director
-        %td= link_to "More about #{movie.title}", movie_path(movie)
-
-
+        %td= some_movie.title 
+        %td= some_movie.rating
+        %td= some_movie.release_date
+        %td= some_movie.director
+        %td= link_to "More about #{some_movie.title}", movie_path(some_movie)
+= link_to 'Back to movie list', movies_path
