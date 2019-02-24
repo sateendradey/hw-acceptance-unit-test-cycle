@@ -23,3 +23,7 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+Then("the director of {string} should be {string}") do |string, string2|
+  Movie.find_by_title(string).director.should eq string2
+end
