@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
-require 'rspec/rails'
 
 describe MoviesController do
   describe 'find movies with same director' do
@@ -37,4 +35,12 @@ describe MoviesController do
       expect(flash[:notice]).to eq ("'#{fake_movie.title}' has no director info")
     end
   end
+  
+  describe 'testing delete action' do
+    it "deleting a non-existent movie should result in a RecordNotFound Error" do         
+      movie_id = 9999
+      expect { delete :destroy, {:id => movie_id}}.to raise_error ActiveRecord::RecordNotFound
+    end
+  end
+      
 end
