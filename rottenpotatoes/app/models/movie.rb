@@ -4,9 +4,10 @@ class Movie < ActiveRecord::Base
   end
   def self.find_with_same_director(id)
     movie = Movie.find(id)
-    if not movie.director.nil?
-      same_movies = Movie.where(:director => movie.director)
+    if (movie.director.nil? or movie.director.empty?)
+      return [movie, nil]
     end
+    same_movies = Movie.where(:director => movie.director)
     [movie, same_movies]
   end
 end
